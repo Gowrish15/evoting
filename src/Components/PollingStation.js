@@ -128,7 +128,7 @@ onValue(starCountRef, (snapshot) => {
   if(data.hasVoted){
     changeResultsDisplay(true);
     changeButtonStatus(true);
-    alert("you have voted already for this year");
+    alert("Thankyou for voting! its registered");
   }
   else{
     const a = async ()=>{
@@ -156,9 +156,13 @@ onValue(starCountRef, (snapshot) => {
     }
   }
   a();
-  
-  updateVoteStatus(data.username,data.password);
-  changeResultsDisplay(true);
+  if(data.password == sha256(val)){
+    updateVoteStatus(data.username,data.password);
+    changeResultsDisplay(true);
+  }
+  else{
+    alert("enter password");
+  }
 }
 });
 
